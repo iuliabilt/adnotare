@@ -38,6 +38,12 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Adnotare') }}
                     </a>
+
+                    @if (!Auth::guest())
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a href="{{ route('file.create') }}">Adaugă</a></li>
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
