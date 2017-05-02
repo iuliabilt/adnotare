@@ -14,7 +14,9 @@ class FilesController extends Controller
      */
     public function index()
     {
-        //
+        $files = \Adnotare\File::all();
+
+        return view('files.index', compact("files"));
     }
 
     /**
@@ -44,7 +46,7 @@ class FilesController extends Controller
         $file->path = $path;
         $file->save();
 
-        return redirect()->back();
+        return redirect()->route('file.index');
     }
 
     /**
@@ -55,7 +57,8 @@ class FilesController extends Controller
      */
     public function show($id)
     {
-        //
+        $file = \Adnotare\File::find($id);
+        echo "Nume: $file->name <br> Id: $file->id";
     }
 
     /**
@@ -89,6 +92,10 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = \Adnotare\File::find($id);
+        \Storage::delete($file->path);
+        $file->delete();
+
+        return redirect()->back();
     }
 }
