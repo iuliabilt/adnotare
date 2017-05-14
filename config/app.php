@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -176,6 +177,7 @@ return [
         // Adnotare\Providers\BroadcastServiceProvider::class,
         Adnotare\Providers\EventServiceProvider::class,
         Adnotare\Providers\RouteServiceProvider::class,
+
 
     ],
 

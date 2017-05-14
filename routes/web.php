@@ -18,5 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/file/download/{id}', 'FilesController@download');
 
 Route::resource('file', 'FilesController');

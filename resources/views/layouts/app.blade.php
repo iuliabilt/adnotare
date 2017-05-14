@@ -43,7 +43,7 @@
                         <ul class="nav navbar-nav navbar-left">
                             <li><a href="{{ route('file.create') }}">Adaugă</a></li>
                             <li><a href="{{ route('file.index') }}">Listă</a></li>
-                            <li><input type="text" placeholder="Căutare"></li>
+                            <li><input type="text" placeholder="Căutare"></li> 
                         </ul>
                     @endif
                 </div>

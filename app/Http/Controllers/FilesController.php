@@ -98,4 +98,10 @@ class FilesController extends Controller
 
         return redirect()->back();
     }
+
+    public function download($id){
+        $file = \Adnotare\File::find($id);
+    return response()->file(storage_path() . '/app/' . $file->path);
+
+    }
 }

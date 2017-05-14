@@ -8,7 +8,10 @@
                 <div class="col-md-8">
                     <a href="{{ route('file.show', ['id' => $file->id]) }}">{{ $file->name }}</a>
                 </div>
-                <div class="col-md-4">
+        <div class="col-md-2">
+            <a class="btn btn-primary" href="{{ url('/file/download/' . $file->id)}}" download="{{ $file->name }}">Download</a>
+        </div>
+                <div class="col-md-2">
                     <form action="{{ route('file.destroy', ['id' => $file->id]) }}" method="POST">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
