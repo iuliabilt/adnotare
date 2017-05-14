@@ -12,9 +12,13 @@ class FilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $files = \Adnotare\File::all();
+        if (isset($request['q'])){
+            $files = \Adnotare\File::where('name', 'LIKE', '%' . $request['q'] . '%')->get();
+        } else {
+            $files = \Adnotare\File::all();
+        }
 
         return view('files.index', compact("files"));
     }
@@ -101,7 +105,6 @@ class FilesController extends Controller
 
     public function download($id){
         $file = \Adnotare\File::find($id);
-    return response()->file(storage_path() . '/app/' . $file->path);
-
+        return response()->file(storage_path() . '/app/' . $file->path);
     }
 }

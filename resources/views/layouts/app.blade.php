@@ -36,14 +36,19 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Adnotare') }}
+                        Acasă
                     </a>
 
                     @if (!Auth::guest())
                         <ul class="nav navbar-nav navbar-left">
                             <li><a href="{{ route('file.create') }}">Adaugă</a></li>
                             <li><a href="{{ route('file.index') }}">Listă</a></li>
-                            <li><input type="text" placeholder="Căutare"></li> 
+                            <li>
+                                <form method="GET" action="" class="form-horizontal custm-form" role="form">
+                                    <input type="text" name="q" placeholder="Căutare" style="text-align: center;">
+                                    <button type="submit" class="custm-btn btn-primary">Căutare</button>
+                                </form>
+                            </li> 
                         </ul>
                     @endif
                 </div>
