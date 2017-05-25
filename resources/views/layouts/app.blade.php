@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,62 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Adnotare</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+     <!-- Styles -->
+        <style>
+            html, body {
+                background-color:#1a75ff;
+                color: #000000;
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
+             }
+              /* unvisited link */
+            a:link {
+                color: white;
+            }
+
+            /* visited link */
+            a:visited {
+                color: white;
+
+            }
+
+            /* mouse over link */
+            a:hover {
+                color: blue;
+            }
+
+            /* selected link */
+            a:active {
+                color: blue;
+            } 
+            button {
+            background: blue;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            }
+            input {
+                background:#1a75ff ;
+                color:white;
+                padding: 11px 16px;
+                border-radius: 20px;
+                opacity: 0.9;   
+            }
+                    </style>
+
+               
+                <!-- Scripts -->
+     <script>
+             window.Laravel =Laraveln_encode([
+             'csrfToken' => csrf_token(),
+              ]) !!};
     </script>
+
+     <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+       
 </head>
 <body>
     <div id="app">
@@ -45,7 +91,7 @@
                             <li><a href="{{ route('file.index') }}">Listă</a></li>
                             <li>
                                 <form method="GET" action="" class="form-horizontal custm-form" role="form">
-                                    <input type="text" name="q" placeholder="Căutare" style="text-align: center;">
+                                    <input type="text" name="q" placeholder="Căutare" style="text-align: center;" >
                                     <button type="submit" class="custm-btn btn-primary">Căutare</button>
                                 </form>
                             </li> 
@@ -63,8 +109,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Conectare</a></li>
+                            <li><a href="{{ route('register') }}">Înregistrare</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -76,7 +122,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Deconectare
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -4,6 +4,7 @@ namespace Adnotare\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class FilesController extends Controller
 {
@@ -79,10 +80,21 @@ class FilesController extends Controller
         $file = \Adnotare\File::find($id);
         $file->rank = $file->rank+1;
         $file->update();
-        echo $file->rank;
-        echo '<br>';
-        //echo "Nume: $file->name <br> Id: $file->id";
-        echo file_get_contents(storage_path() . '/app/' . $file->path);
+
+        // echo $file->rank;
+        // echo '<br>';
+        // //echo "Nume: $file->name <br> Id: $file->id";
+        // echo file_get_contents(storage_path() . '/app/' . $file->path);
+     
+        return response()->file(storage_path() . '/app/' . $file->path);
+   
+    }
+
+    public function tag($id)
+    {
+        $file = \Adnotare\File::find($id);
+        
+        echo "Nume: $file->name <br> Id: $file->id";
     }
 
     /**
@@ -125,6 +137,7 @@ class FilesController extends Controller
 
     public function download($id){
         $file = \Adnotare\File::find($id);
+        
         return response()->file(storage_path() . '/app/' . $file->path);
     }
 }
