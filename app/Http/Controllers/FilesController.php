@@ -4,6 +4,7 @@ namespace Adnotare\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class FilesController extends Controller
 {
@@ -62,8 +63,21 @@ class FilesController extends Controller
     public function show($id)
     {
         $file = \Adnotare\File::find($id);
+        
         echo "Nume: $file->name <br> Id: $file->id";
-    }
+     
+        return response()->file(storage_path() . '/app/' . $file->path);
+   
+ }
+ public function tag($id)
+    {
+        $file = \Adnotare\File::find($id);
+        
+        echo "Nume: $file->name <br> Id: $file->id";
+     
+        
+   
+ }
 
     /**
      * Show the form for editing the specified resource.
