@@ -81,12 +81,17 @@ class FilesController extends Controller
         $file->rank = $file->rank+1;
         $file->update();
 
+        $fileContent = file_get_contents(storage_path() . '/app/' . $file->path);
+
+        $author = $file->user->name;
+
         // echo $file->rank;
         // echo '<br>';
         // //echo "Nume: $file->name <br> Id: $file->id";
         // echo file_get_contents(storage_path() . '/app/' . $file->path);
      
-        return response()->file(storage_path() . '/app/' . $file->path);
+        //return response()->file(storage_path() . '/app/' . $file->path);
+        return view('files.show', compact("file", 'fileContent', 'author'));
    
     }
 
@@ -137,7 +142,7 @@ class FilesController extends Controller
 
     public function download($id){
         $file = \Adnotare\File::find($id);
-        
+
         return response()->file(storage_path() . '/app/' . $file->path);
     }
 }

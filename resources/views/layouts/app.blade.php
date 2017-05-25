@@ -16,18 +16,18 @@
      <!-- Styles -->
         <style>
             html, body {
-                background-color:#1a75ff;
+                /*background-color:#006699;*/
                 color: #000000;
 
              }
               /* unvisited link */
             a:link {
-                color: white;
+                color: black;
             }
 
             /* visited link */
             a:visited {
-                color: white;
+                color: black;
 
             }
 
@@ -41,19 +41,26 @@
                 color: blue;
             } 
             button {
-            background: blue;
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+                background: blue;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
             }
             input {
-                background:#1a75ff ;
-                color:white;
+                /*background:#006699;*/
+                color:black;
                 padding: 11px 16px;
                 border-radius: 20px;
                 opacity: 0.9;   
             }
-                    </style>
-
-               
+            .navbar {
+                background-color:#669999;
+            }
+            .navbar-default .navbar-brand {
+                color: #fff;
+            }
+            .navbar-default .navbar-nav > li > a, .navbar-default .navbar-text {
+                color: #fff;
+            }
+        </style>       
                 <!-- Scripts -->
      <script>
              window.Laravel =Laraveln_encode([
