@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             @if($files->count() > 0)
                 @foreach($files as $file)
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <a href="{{ route('file.show', ['id' => $file->id]) }}">{{ $file->name }}</a>
                     </div>
                     <div class="col-md-2">
@@ -16,9 +16,14 @@
                         <form action="{{ route('file.destroy', ['id' => $file->id]) }}" method="POST">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" type="submit"onclick="return confirm('Sunteți sigur de această acțiune?')">Delete</button>
                         </form>
                     </div>
+                    <div class="col-md-3">
+                        <p>Număr vizualizări: <b>{{ $file->rank }}</b></p>
+                    </div>
+                    <br>
+                    <br>
                 @endforeach
             @else
                 <div class="col-md-12">
@@ -28,4 +33,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection 

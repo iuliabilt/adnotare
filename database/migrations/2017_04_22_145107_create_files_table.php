@@ -21,6 +21,7 @@ class CreateFilesTable extends Migration
     
             $table->string('path');
             $table->string('name');
+            $table->integer('rank')->unsigned()->nullable();
             $table->timestamps();
         });
     }

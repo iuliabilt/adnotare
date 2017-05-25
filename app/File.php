@@ -12,7 +12,7 @@ class File extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'path',
+        'name', 'path', 'rank' 
     ];
 
     /**

@@ -15,9 +15,24 @@ class FilesController extends Controller
     public function index(Request $request)
     {
         if (isset($request['q'])){
-            $files = \Adnotare\File::where('name', 'LIKE', '%' . $request['q'] . '%')->get();
-        } else {
+            //$files = \Adnotare\File::where('name', 'LIKE', '%' . $request['q'] . '%')->get();
             $files = \Adnotare\File::all();
+            $idArray = [];
+
+            foreach ($files as $file) {
+                if (strpos($file->name, $request['q']) !== false) {
+                    $idArray[] = $file->id;
+                    break;
+                }
+
+                $fileContent = file_get_contents(storage_path() . '/app/' . $file->path);
+                if (strpos($fileContent, $request['q']) !== false) {
+                    $idArray[] = $file->id;
+                }
+            }
+            $files = \Adnotare\File::whereIn('id', $idArray)->orderBy('rank', 'DESC')->get();
+        } else {
+            $files = \Adnotare\File::orderBy('rank', 'DESC')->get();
         }
 
         return view('files.index', compact("files"));
@@ -62,7 +77,12 @@ class FilesController extends Controller
     public function show($id)
     {
         $file = \Adnotare\File::find($id);
-        echo "Nume: $file->name <br> Id: $file->id";
+        $file->rank = $file->rank+1;
+        $file->update();
+        echo $file->rank;
+        echo '<br>';
+        //echo "Nume: $file->name <br> Id: $file->id";
+        echo file_get_contents(storage_path() . '/app/' . $file->path);
     }
 
     /**
