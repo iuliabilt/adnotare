@@ -18,7 +18,7 @@ class CreateModificationsTable extends Migration
 
             $table->integer('file_id')->unsigned();
             $table->foreign('file_id')->references('id')->on('files');
-    
+
             $table->string('comment');
             $table->timestamps();
         });

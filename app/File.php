@@ -12,14 +12,14 @@ class File extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'path', 'rank' 
+        'name', 'path', 'rank'
     ];
 
     /**
-	 * Get the user that owns the phone.
-	 */
-	public function user()
-	{
-	    return $this->belongsTo('Adnotare\User', 'user_id');
-	}
+     * Get the user that owns the phone.
+     */
+    public function user()
+    {
+        return $this->belongsTo('Adnotare\User', 'user_id');
+    }
 }

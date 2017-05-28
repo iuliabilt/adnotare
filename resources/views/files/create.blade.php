@@ -18,12 +18,12 @@
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" id="name" placeholder="Introduceți numele" name="name">
                                 </div>
-                                 
+
                                   <label class="control-label col-md-3">Cuvinte cheie:</label>
-                              
+
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" id="word" placeholder="Cuvant" name="word">
-                               
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -32,7 +32,7 @@
                                     <input  type="file" id="file" placeholder="Fișier" name="file" class=""/>
                                     <!-- <span class="required" id='spnFileError'></span> -->
                                 </div>
-                            </div>                                
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" id="btnUpload" class="custm-btn btn-primary" onclick="uploadFile();">Încarcă</button>

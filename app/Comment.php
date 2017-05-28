@@ -3,10 +3,31 @@
 namespace Adnotare;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent;
 
-class Comment extends Eloquent { 
-// let eloquent know that these attributes will be available for mass assignment protected 
-	$fillable = array('author', 'text'); 
+class Comment extends Model
+{
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'content'
+    ];
 
+    /**
+     * Get the user that made the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo('Adnotare\User', 'user_id');
+    }
+
+    /**
+     * Get the file the user made the comment on.
+     */
+    public function file()
+    {
+        return $this->belongsTo('Adnotare\File', 'file_id');
+    }
 }

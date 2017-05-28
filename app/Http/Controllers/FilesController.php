@@ -23,7 +23,7 @@ class FilesController extends Controller
             foreach ($files as $file) {
                 if (strpos($file->name, $request['q']) !== false) {
                     $idArray[] = $file->id;
-                    break;
+                    //break;
                 }
 
                 $fileContent = file_get_contents(storage_path() . '/app/' . $file->path);
@@ -62,7 +62,7 @@ class FilesController extends Controller
         $file->name = $request['name'];
 
         $path = $request->file('file')->store('files');
-        
+
         $file->path = $path;
         $file->save();
 
@@ -82,6 +82,7 @@ class FilesController extends Controller
         $file->update();
 
         $fileContent = file_get_contents(storage_path() . '/app/' . $file->path);
+        $fileContent = preg_replace('/(\w+)/i', '<wordtag>$1<wordtag>', $fileContent);
 
         $author = $file->user->name;
 

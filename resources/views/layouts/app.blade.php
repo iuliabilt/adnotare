@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
      <!-- Styles -->
         <style>
             html, body {
@@ -60,7 +61,7 @@
             .navbar-default .navbar-nav > li > a, .navbar-default .navbar-text {
                 color: #fff;
             }
-        </style>       
+        </style>
                 <!-- Scripts -->
      <script>
              window.Laravel =Laraveln_encode([
@@ -97,7 +98,7 @@
                             <li><a href="{{ route('file.create') }}">Adaugă</a></li>
                             <li><a href="{{ route('file.index') }}">Listă</a></li>
                             <li>
-                                <form method="GET" action="" class="form-horizontal custm-form" role="form">
+                                <form method="GET" action="{{ route('file.index') }}" class="form-horizontal custm-form" role="form">
                                     <input type="text" name="q" placeholder="Căutare" style="text-align: center;" >
                                     <button type="submit" class="custm-btn btn-primary">Căutare</button>
                                 </form>

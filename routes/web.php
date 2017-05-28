@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/file/download/{id}', 'FilesController@download');
 
 Route::resource('file', 'FilesController');
+Route::resource('comment', 'CommentsController');
