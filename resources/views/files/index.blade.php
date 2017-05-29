@@ -23,6 +23,9 @@
                     <div class="col-md-3">
                         <p>Număr vizualizări: <b>{{ $file->rank }}</b></p>
                     </div>
+                    <div class="col-md-3">
+                        <a href="{{ url('/file/download/' . $file->id) }}"> Vizualizare</a>
+                    </div>
                     <br>
                     <br>
                 @endforeach

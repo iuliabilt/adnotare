@@ -146,4 +146,10 @@ class FilesController extends Controller
 
         return response()->file(storage_path() . '/app/' . $file->path);
     }
+     public function detail($id){
+       $file = \Adnotare\File::find($id);
+        
+         return response()->file(storage_path() . '/app/' . $file->path);
+       // return view('files.show', compact("file", 'fileContent', 'author'));
+       }
 }
