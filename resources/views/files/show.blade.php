@@ -27,7 +27,7 @@
           <p id="adnotariText">Se încarcă...</p>
         </div>
         <div class="modal-footer">
-            <input type="text" id="wordIdInput">
+            <input type="hidden" id="wordIdInput">
             <textarea type="text" class="form-control" id="content" placeholder="Introduceți o adnotare..." name="content"></textarea>
             <button type="submit" id="addCommentBtn" class="custm-btn btn-primary">Adaugă adnotare</button>
         </div>
@@ -50,6 +50,32 @@ $(function() {
     $(".wordClick").click(function(){
         $("#commentTitle").html("Adnotări pentru cuvântul: <b>" + $(this).text() + "</b>");
         $("#wordIdInput").val($(this).attr('id'));
+        $.ajax({
+            url: "{{ url('get_comments') }}",
+            type: "GET",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "file_id": "{{ $file->id }}",
+                "word_id": $("#wordIdInput").val()
+            },
+            dataType: "json",
+            success: function(success_var) {
+                console.log(success_var);
+                htmlCommets = "";
+                $.each(success_var, function(index, element) {
+                    // htmlCommets += "<div class\"col-md-12\">";
+                    htmlCommets += element.content;
+                    htmlCommets += "<br><br>";
+                    // htmlCommets += "</div>";
+
+                    // alert(element.content); 
+                });
+                $("#adnotariText").html(htmlCommets);
+            },
+            error: function(error_var) {
+                console.log(error_var);
+            }
+        });
         //alert($(this).attr('id'));
         $("#myModal").modal();
     });
@@ -63,11 +89,11 @@ $(function() {
                 "file_id": "{{ $file->id }}",
                 "user_id": "{{ Auth::user()->id }}",
                 "word_id": $("#wordIdInput").val(),
-                "content": $("#content").text()
+                "content": $("#content").val()
             },
             dataType: "json",
             success: function(success_var) {
-                alert("Success");
+                // alert("Success");
             },
             error: function(error_var) {
                 console.log(error_var);

@@ -82,8 +82,8 @@ class FilesController extends Controller
         $file->update();
 
         $fileContent = file_get_contents(storage_path() . '/app/' . $file->path);
-        $fileContent = preg_replace('/(\w+)/i', '<wordtag>$1<wordtag>', $fileContent);
-
+            //$fileContent = preg_replace('/(\w+)/i', '<wordtag>$1<wordtag>', $fileContent);
+            $fileContent = preg_replace('/(\w+)/u', '<wordtag>$1<wordtag>', $fileContent);
         $author = $file->user->name;
 
         // echo $file->rank;
@@ -146,10 +146,17 @@ class FilesController extends Controller
 
         return response()->file(storage_path() . '/app/' . $file->path);
     }
-     public function detail($id){
-       $file = \Adnotare\File::find($id);
+     // public function detail($id){
+     //   $file = \Adnotare\File::find($id);
         
-         return response()->file(storage_path() . '/app/' . $file->path);
-       // return view('files.show', compact("file", 'fileContent', 'author'));
-       }
+     //     return response()->file(storage_path() . '/app/' . $file->path);
+     //   // return view('files.show', compact("file", 'fileContent', 'author'));
+     //   }
+
+    public function getComments(Request $request)
+    {
+        $comments = \Adnotare\Comment::where('file_id', $request['file_id'])->where('word_id', $request['word_id'])->get();
+
+        return $comments->toJson();
+    }
 }

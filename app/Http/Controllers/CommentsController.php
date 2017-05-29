@@ -34,16 +34,16 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        $comment = new \Adnotare\Comment();
+        
+        $comment = new \Adnotare\Comment;
         $comment->file_id = $request['file_id'];
         $comment->user_id = $request['user_id'];
         $comment->word_id = $request['word_id'];
         $comment->content = $request['content'];
-        $comment->store();
-         */
+        $comment->save();
+         
 
-        return "GG.";
+        return json_encode("GG.");
     }
 
     /**

@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/file/download/{id}', 'FilesController@download');
+Route::get('/get_comments', 'FilesController@getComments');
 
 Route::resource('file', 'FilesController');
 Route::resource('comment', 'CommentsController');
