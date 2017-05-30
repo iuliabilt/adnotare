@@ -47,6 +47,25 @@ $(function() {
     $('#loading').hide();
     $("#fileText").show();
 
+    $.ajax({
+        url: "{{ url('get_comments_ids') }}",
+        type: "GET",
+        data: {
+            "_token": "{{ csrf_token() }}",
+            "file_id": "{{ $file->id }}"
+        },
+        dataType: "json",
+        async: "false",
+        success: function(success_var) {
+            $.each(success_var, function(k, v) {
+                $("#"+v).css('font-weight', 'bold');
+            });
+        },
+        error: function(error_var) {
+            console.log(error_var);
+        }
+    });
+
     $(".wordClick").click(function(){
         $("#commentTitle").html("Adnotări pentru cuvântul: <b>" + $(this).text() + "</b>");
         $("#wordIdInput").val($(this).attr('id'));
@@ -93,6 +112,9 @@ $(function() {
             },
             dataType: "json",
             success: function(success_var) {
+                $("#myModal").modal('hide');
+                $("#content").val('');
+                $("#"+$("#wordIdInput").val()).css('font-weight', 'bold');
                 // alert("Success");
             },
             error: function(error_var) {

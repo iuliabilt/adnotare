@@ -20,6 +20,13 @@ class FilesController extends Controller
             $files = \Adnotare\File::all();
             $idArray = [];
 
+            $tags = \Adnotare\Tag::where('tag', 'LIKE', '%' . $request['q'] . '%')->get();
+            if(count($tags) != 0){
+                foreach ($tags as $tag) {
+                    $idArray[] = $tag->file_id;
+                }
+            }
+
             foreach ($files as $file) {
                 if (strpos($file->name, $request['q']) !== false) {
                     $idArray[] = $file->id;
@@ -65,6 +72,14 @@ class FilesController extends Controller
 
         $file->path = $path;
         $file->save();
+
+        $tags = explode(",", $request['tags']);
+        foreach ($tags as $tag) {
+            $t = new \Adnotare\Tag;
+            $t->file_id = $file->id;
+            $t->tag = $tag;
+            $t->save();
+        }
 
         return redirect()->route('file.index');
     }
@@ -158,5 +173,12 @@ class FilesController extends Controller
         $comments = \Adnotare\Comment::where('file_id', $request['file_id'])->where('word_id', $request['word_id'])->get();
 
         return $comments->toJson();
+    }
+
+    public function getCommentsIds(Request $request)
+    {
+        $comments = \Adnotare\Comment::where('file_id', $request['file_id'])->distinct('word_id')->pluck('word_id')->toJson();
+
+        return $comments;
     }
 }

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="{{ asset('css/bootstrap-tagsinput.css') }}" rel="stylesheet">
+<script src="{{ asset('js/bootstrap-tagsinput.js') }}"></script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -19,10 +22,10 @@
                                     <input type="text" class="form-control" id="name" placeholder="Introduceți numele" name="name">
                                 </div>
 
-                                  <label class="control-label col-md-3">Cuvinte cheie:</label>
+                                  <label class="control-label col-md-3">Etichete:</label>
 
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" id="word" placeholder="Cuvant" name="word">
+                                    <input type="text" class="form-control" id="word" placeholder="Cuvânt" name="tags" data-role="tagsinput">
 
                                 </div>
                             </div>
@@ -43,4 +46,12 @@
         </div>
     </div>
 </div>
+<script>
+$(document).on('keyup keypress', 'form input[type="text"]', function(e) {
+  if(e.which == 13) {
+    e.preventDefault();
+    return false;
+  }
+});
+</script>
 @endsection
